@@ -1,0 +1,39 @@
+SQL for queries within the database
+
+You have to use this to enter into DATABASE (USE group20db;)
+
+Query 1: Returns a list of all the cities that contain an ARCHITECTURE.
+
+SELECT * FROM
+
+group20db.Site WHERE
+
+categories = 'ARCHITECTURE' LIMIT 20;
+
+Query 2: Returns a list of all the cities, where USA citizens can visit without a visa
+
+and Used a JOIN to connect the tables.
+
+SELECT City.*, IF(requiredvisa = 1, 'True', 'False') requiredvisa FROM group20db.Country INNER JOIN group20db.City ON City.countryName = Country.countryName WHERE requiredvisa IS NOT TRUE; Query 3: Returns a list of all the cities, where USA citizens can visit without a visa
+
+and didn’t Used JOIN to connect the tables.
+
+SELECT b.*, IF(requiredvisa = 1, 'True', 'False') requiredvisa FROM group20db.Country a, group20db.City b WHERE a.countryName = b.countryName AND a.requiredvisa IS NOT TRUE;
+
+Query 4: Returns a list of all the users who have visited EIFFEL TOWER.
+
+SELECT a.siteName, b.*, a.rating FROM group20db.Visit a, group20db.Users b WHERE a.email = b.email AND siteName = 'EIFFEL TOWER';
+
+Query 5: Returns a list of users and there ratings, who visited TAJ MAHAL.
+
+SELECT userName AS NAMES, rating AS RATING FROM Visit, Users WHERE
+
+Visit.email = Users.email AND Visit.siteName = 'TAJ MAHAL';
+
+Query 6: Returs site Names and there ratings, where rating are between 3 and 5.
+
+SELECT rating AS RATING, siteName AS SITE FROM
+
+Visit WHERE
+
+rating BETWEEN 3 AND 5 ORDER BY rating DESC;

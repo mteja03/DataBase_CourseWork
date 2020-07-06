@@ -1,0 +1,115 @@
+CREATE DATABASE group20db; 
+USE group20db; 
+CREATE TABLE Country(
+
+					countryName VARCHAR(30) NOT NULL PRIMARY KEY, 
+					currency VARCHAR(30) NOT NULL, 
+					requiredvisa BOOLEAN 
+					)ENGINE=INNODB;
+
+CREATE TABLE City(
+
+					cityName VARCHAR(30) NOT NULL PRIMARY KEY, 
+					countryName VARCHAR(30) NOT NULL, 
+					FOREIGN KEY(countryName) REFERENCES Country(countryName) 
+				 	)ENGINE=INNODB;
+
+CREATE TABLE Site(
+
+					siteName VARCHAR(50) NOT NULL PRIMARY KEY, 
+					cityName VARCHAR(50) NOT NULL, 
+					categories VARCHAR(50) NOT NULL, 
+					FOREIGN KEY(cityName) REFERENCES City(cityName) 
+					)ENGINE=INNODB;
+
+CREATE TABLE Users(
+
+					userName VARCHAR(80) NOT NULL, 
+					email VARCHAR(50) NOT NULL PRIMARY KEY 
+					)ENGINE=INNODB;
+
+CREATE TABLE Visit(
+
+					siteName VARCHAR(50) NOT NULL, 
+					email VARCHAR(50) NOT NULL, 
+					rating INT, 
+					CONSTRAINT abVisit PRIMARY KEY (siteName, email), 
+					FOREIGN KEY(siteName) REFERENCES Site(siteName), 
+					FOREIGN KEY(email) REFERENCES Users(email) 
+					)ENGINE=INNODB;
+
+
+
+
+
+INSERT INTO Country VALUES ("INDIA", "INDIA RUPEE", TRUE); 
+INSERT INTO Country VALUES ("USA", "USD", FALSE); 
+INSERT INTO Country VALUES ("UK", "POUND", FALSE ); 
+INSERT INTO Country VALUES ("CHINA", "RENMINBI", TRUE ); 
+INSERT INTO Country VALUES ("FRANCE", "EURO", FALSE );
+
+
+INSERT INTO City VALUES ("DELHI", "INDIA" ); 
+INSERT INTO City VALUES ("AGRA", "INDIA" ); 
+INSERT INTO City VALUES ("NEW YORK", "USA" ); 
+INSERT INTO City VALUES ("WASHINGTON", "USA" ); 
+INSERT INTO City VALUES ("LONDON", "UK" ); 
+INSERT INTO City VALUES ("EDINBURGH", "UK" ); 
+INSERT INTO City VALUES ("SHANGHAI", "CHINA" ); 
+INSERT INTO City VALUES ("BEIJING", "CHINA" ); I
+NSERT INTO City VALUES ("PARIS", "FRANCE" ); 
+INSERT INTO City VALUES ("NICE", "FRANCE" ); 
+INSERT INTO Site VALUES ("RED FORT", "DELHI", "CASTLE" ); 
+INSERT INTO Site VALUES ("TAJ MAHAL", "AGRA", "ARCHITECTURE" ); 
+INSERT INTO Site VALUES ("STATUE OF LIBERTY", "NEW YORK", "STATUE" ); 
+INSERT INTO Site VALUES ("OLYMPIC NATIONAL PARK", "WASHINGTON", "PARK" ); 
+INSERT INTO Site VALUES ("LONDON EYE", "LONDON", "RIDE" ); 
+INSERT INTO Site VALUES ("EDINBURGH CASTLE", "EDINBURGH", "CASTLE" ); 
+INSERT INTO Site VALUES ("YU GARDEN", "SHANGHAI", "PARK" ); 
+INSERT INTO Site VALUES ("GREAT WALL OF CHINA", "BEIJING", "ARCHITECTURE" ); 
+INSERT INTO Site VALUES ("EIFFEL TOWER", "PARIS", "ARCHITECTURE" ); 
+INSERT INTO Site VALUES ("PROMENADE-DES ANGLAIS", "NICE", "BEACH" );
+
+
+INSERT INTO Users VALUES ("jack", "jack122@gmail.com" ); 
+INSERT INTO Users VALUES ("josh", "josh122@gmail.com" ); 
+INSERT INTO Users VALUES ("MARK", "mark007@gmail.com" ); 
+INSERT INTO Users VALUES ("EMILY", "emily098@gmail.com" ); 
+INSERT INTO Users VALUES ("DANNY", "daredanny@gmail.com" );
+
+
+INSERT INTO Visit VALUES ("RED FORT", "jack122@gmail.com", "4" ); 
+INSERT INTO Visit VALUES ("TAJ MAHAL", "josh122@gmail.com", "5"); 
+INSERT INTO Visit VALUES ("STATUE OF LIBERTY", "emily098@gmail.com", "3"); 
+INSERT INTO Visit VALUES ("OLYMPIC NATIONAL PARK","daredanny@gmail.com", "5"); INSERT INTO Visit VALUES ("LONDON EYE", "josh122@gmail.com", "5"); 
+INSERT INTO Visit VALUES ("EDINBURGH CASTLE", "daredanny@gmail.com", "4"); 
+INSERT INTO Visit VALUES ("YU GARDEN", "emily098@gmail.com", "3"); 
+INSERT INTO Visit VALUES ("GREAT WALL OF CHINA", "mark007@gmail.com", "2"); 
+INSERT INTO Visit VALUES ("EIFFEL TOWER", "jack122@gmail.com" , "4"); 
+INSERT INTO Visit VALUES ("PROMENADE-DES ANGLAIS", "josh122@gmail.com", "5"); INSERT INTO Visit VALUES ("RED FORT", "mark007@gmail.com", "4" ); 
+INSERT INTO Visit VALUES ("TAJ MAHAL", "daredanny@gmail.com", "5"); 
+INSERT INTO Visit VALUES ("STATUE OF LIBERTY", "mark007@gmail.com", "3"); 
+INSERT INTO Visit VALUES ("OLYMPIC NATIONAL PARK","emily098@gmail.com", "5"); INSERT INTO Visit VALUES ("LONDON EYE", "mark007@gmail.com", "5"); 
+INSERT INTO Visit VALUES ("EDINBURGH CASTLE", "jack122@gmail.com", "4"); 
+INSERT INTO Visit VALUES ("YU GARDEN", "jack122@gmail.com", "3"); 
+INSERT INTO Visit VALUES ("GREAT WALL OF CHINA", "emily098@gmail.com", "2"); INSERT INTO Visit VALUES ("EIFFEL TOWER", "josh122@gmail.com" , "4"); 
+INSERT INTO Visit VALUES ("PROMENADE-DES ANGLAIS", "daredanny@gmail.com", "5");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
